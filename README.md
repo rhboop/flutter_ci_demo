@@ -1,3 +1,5 @@
+
+![](https://app.bitrise.io/app/eba74d879fca31f4/status.svg?token=DmozZ_Xwj4gvONTz7Q7ZYQ)
 # fluttercidemo
 
 A new Flutter application.
