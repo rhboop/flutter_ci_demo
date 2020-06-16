@@ -1,4 +1,4 @@
-# flutterciidemo
+# fluttercidemo
 
 A new Flutter application.
 
