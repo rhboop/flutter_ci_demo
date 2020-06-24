@@ -26,6 +26,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
+apply plugin: 'com.google.firebase.appdistribution'
 
 android {
     compileSdkVersion 28
@@ -53,6 +54,11 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
+            firebaseAppDistribution{
+                serviceCredentialsFile="./flutter-ci-demo-528e6402810f.json"
+                releaseNotesFile="./release-notes.txt"
+                testers="runhui.sun@queenbeecapital.com"
+            }
         }
     }
 }

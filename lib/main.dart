@@ -151,86 +151,88 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(_performanceCollectionMessage),
-            RaisedButton(
-              onPressed: _togglePerformanceCollection,
-              child: const Text('Toggle Data Collection'),
-            ),
-            RaisedButton(
-              onPressed: _testTrace,
-              child: const Text('Run Trace'),
-            ),
-            Text(
-              _traceHasRan ? 'Trace Ran!' : '',
-              style: textStyle,
-            ),
-            RaisedButton(
-              onPressed: _testHttpMetric,
-              child: const Text('Run HttpMetric'),
-            ),
-            Text(
-              _httpMetricHasRan ? 'HttpMetric Ran!' : '',
-              style: textStyle,
-            ),
-            FlatButton(
-                child: const Text('Key'),
-                onPressed: () {
-                  Crashlytics.instance.setString('foo', 'bar');
-                }),
-            FlatButton(
-                child: const Text('Log'),
-                onPressed: () {
-                  Crashlytics.instance.log('baz');
-                }),
-            FlatButton(
-                child: const Text('Crash'),
-                onPressed: () {
-                  // Use Crashlytics to throw an error. Use this for
-                  // confirmation that errors are being correctly reported.
-                  Crashlytics.instance.crash();
-                }),
-            FlatButton(
-                child: const Text('Throw Error'),
-                onPressed: () {
-                  // Example of thrown error, it will be caught and sent to
-                  // Crashlytics.
-                  throw StateError('Uncaught error thrown by app.');
-                }),
-            FlatButton(
-                child: const Text('Async out of bounds'),
-                onPressed: () {
-                  // Example of an exception that does not get caught
-                  // by `FlutterError.onError` but is caught by the `onError` handler of
-                  // `runZoned`.
-                  Future<void>.delayed(const Duration(seconds: 2), () {
-                    final List<int> list = <int>[];
-                    print(list[100]);
-                  });
-                }),
-            FlatButton(
-                child: const Text('Record Error'),
-                onPressed: () {
-                  try {
-                    throw 'error_example';
-                  } catch (e, s) {
-                    // "context" will append the word "thrown" in the
-                    // Crashlytics console.
-                    Crashlytics.instance
-                        .recordError(e, s, context: 'as an example');
-                  }
-                }),
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(_performanceCollectionMessage),
+              RaisedButton(
+                onPressed: _togglePerformanceCollection,
+                child: const Text('Toggle Data Collection'),
+              ),
+              RaisedButton(
+                onPressed: _testTrace,
+                child: const Text('Run Trace'),
+              ),
+              Text(
+                _traceHasRan ? 'Trace Ran!' : '',
+                style: textStyle,
+              ),
+              RaisedButton(
+                onPressed: _testHttpMetric,
+                child: const Text('Run HttpMetric'),
+              ),
+              Text(
+                _httpMetricHasRan ? 'HttpMetric Ran!' : '',
+                style: textStyle,
+              ),
+              FlatButton(
+                  child: const Text('Key'),
+                  onPressed: () {
+                    Crashlytics.instance.setString('foo', 'bar');
+                  }),
+              FlatButton(
+                  child: const Text('Log'),
+                  onPressed: () {
+                    Crashlytics.instance.log('baz');
+                  }),
+              FlatButton(
+                  child: const Text('Crash'),
+                  onPressed: () {
+                    // Use Crashlytics to throw an error. Use this for
+                    // confirmation that errors are being correctly reported.
+                    Crashlytics.instance.crash();
+                  }),
+              FlatButton(
+                  child: const Text('Throw Error'),
+                  onPressed: () {
+                    // Example of thrown error, it will be caught and sent to
+                    // Crashlytics.
+                    throw StateError('Uncaught error thrown by app.');
+                  }),
+              FlatButton(
+                  child: const Text('Async out of bounds'),
+                  onPressed: () {
+                    // Example of an exception that does not get caught
+                    // by `FlutterError.onError` but is caught by the `onError` handler of
+                    // `runZoned`.
+                    Future<void>.delayed(const Duration(seconds: 2), () {
+                      final List<int> list = <int>[];
+                      print(list[100]);
+                    });
+                  }),
+              FlatButton(
+                  child: const Text('Record Error'),
+                  onPressed: () {
+                    try {
+                      throw 'error_example';
+                    } catch (e, s) {
+                      // "context" will append the word "thrown" in the
+                      // Crashlytics console.
+                      Crashlytics.instance
+                          .recordError(e, s, context: 'as an example');
+                    }
+                  }),
+              Text(
+                'You have pushed the button this many times:',
+              ),
+              Text(
+                '$_counter',
+                style: Theme.of(context).textTheme.display1,
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
